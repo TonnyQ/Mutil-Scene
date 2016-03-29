@@ -6,6 +6,7 @@ using System.Xml;
 using System.IO;
 using System.Text;
 using SceneManager;
+using Util;
 
 public class ExportSceneData : Editor {
 
@@ -199,17 +200,18 @@ public class ExportSceneData : Editor {
 
 	static List<GameObject> FindAllNeedPackObjs()
 	{
-		List<GameObject> allObjs = new List<GameObject> ();
-		GameObject go = GameObject.Find("Envirnoment");
-		if (go != null)
-		{
-			for (int i = 0; i < go.transform.childCount; i++)
-			{
-				GameObject prototype = go.transform.GetChild(i).gameObject;
-				allObjs.Add(prototype);
+		using (StopTime time = new StopTime ("find")) {//StopTime分析工具
+			
+			List<GameObject> allObjs = new List<GameObject> ();
+			GameObject go = GameObject.Find ("Envirnoment");
+			if (go != null) {
+				for (int i = 0; i < go.transform.childCount; i++) {
+					GameObject prototype = go.transform.GetChild (i).gameObject;
+					allObjs.Add (prototype);
+				}
 			}
+			return allObjs;
 		}
-		return allObjs;
 	}
 
 	[MenuItem("SceneTools/PutRandomScene")]
