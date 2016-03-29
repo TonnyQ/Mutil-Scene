@@ -1,0 +1,12 @@
+﻿
+<scene_data_config version="1.0">
+
+	<scene id="" name="" type="">
+		<scene_item name="" path="" type="" weight="">
+			<position x="" y="" z=""/>
+			<rotation x="" y="" z=""/>
+			<scale x="" y="" z=""/>
+		</scene_item>
+	</scene>
+</scene_data_config>
+
