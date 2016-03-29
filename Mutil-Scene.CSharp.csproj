@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -58,6 +60,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -68,14 +76,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\SceneManager\MetaLod\UMetaLod.cs" />
     <Compile Include="Assets\Scripts\SceneManager\MetaLod\UMetaLodDef.cs" />
-    <Compile Include="Assets\Scripts\SceneManager\MetaLod\UMetaLod_Impl.cs" />
     <Compile Include="Assets\Scripts\SceneManager\QuadTree\UQuadtree.cs" />
     <Compile Include="Assets\Scripts\SceneManager\QuadTree\UQuadtree_Internal.cs" />
-    <Compile Include="Assets\TestFullScene\UCore.cs" />
-    <Compile Include="Assets\TestFullScene\UTestBootstrap.cs" />
-    <Compile Include="Assets\TestFullScene\UTestBootstrap1.cs" />
-    <Compile Include="Assets\TestFullScene\UTestMetaLod.cs" />
-    <Compile Include="Assets\TestFullScene\UTestQuadtree.cs" />
+    <Compile Include="Assets\Scripts\SceneManager\SceneData.cs" />
+    <Compile Include="Assets\Scripts\TestScene\UTestBootstrap.cs" />
+    <Compile Include="Assets\Scripts\TestScene\UTestQuadtree.cs" />
+    <Compile Include="Assets\Scripts\Utlity\StopTime.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Config\scene_data_config.xml" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
