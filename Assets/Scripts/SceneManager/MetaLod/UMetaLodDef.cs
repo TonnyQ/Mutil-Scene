@@ -90,8 +90,10 @@ namespace umlod
             Normalizer = (value, upper, lower) => { return UMetaLodUtil.Percent(lower, upper, value); },
         };
 
+		//adjust inner and outer radius
         public static fnHeatAttenuate HeatAttenuation = (float fps, out float inner, out float outer) =>
         {
+			//limit value in bewteen min and max
             float fpsClamped = Mathf.Clamp(fps, UMetaLodConfig.FpsLowerBound, UMetaLodConfig.FpsUpperBound);
             float fpsScale = 0.0f;
             if (fpsClamped < UMetaLodConfig.FpsStandard)
