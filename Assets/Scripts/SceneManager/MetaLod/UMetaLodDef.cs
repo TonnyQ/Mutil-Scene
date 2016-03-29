@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 namespace umlod
 {
+	//自定义的归一化因子函数
     public delegate float fnFactorNormalize(float value, float upper, float lower);
+	//自定义计算活跃度的函数
     public delegate void fnHeatAttenuate(float fps, out float distInner, out float distOuter);
 
     public struct UImpactFactor
@@ -42,6 +44,7 @@ namespace umlod
 
     public class UMetaLodUtil
     {
+		//计算数值百分比的函数
         public static float Percent(float from, float to, float value)
         {
             if (float.Equals(from, to))

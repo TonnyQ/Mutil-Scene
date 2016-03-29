@@ -40,7 +40,7 @@ public class MetaLodTargetGameObject : IMetaLodTarget
 }
 
 
-public class UTestPrototypes
+public class UTestPrototypes2
 {
     public static List<GameObject> Prototypes = new List<GameObject>();
 
@@ -79,7 +79,7 @@ public class UTestMetaLod
 
     public bool Init()
     {
-        UTestPrototypes.Init();
+        UTestPrototypes2.Init();
 
         m_instRoot = GameObject.Find("Instances");
         if (m_instRoot == null)
@@ -88,7 +88,7 @@ public class UTestMetaLod
         m_metalod = new UMetaLod();
         for (int i = 0; i < 3000; i++)
         {
-            MetaLodTargetGameObject target = UTestPrototypes.NewRandom();
+            MetaLodTargetGameObject target = UTestPrototypes2.NewRandom();
             if (target != null)
             {
                 target.gameObject.transform.localPosition = NewRandomPoint();
