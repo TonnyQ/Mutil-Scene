@@ -49,6 +49,10 @@ public class ExportSceneData : Editor {
                     gameObjectXmlElement.SetAttribute("objectName", sceneObject.name);
                     gameObjectXmlElement.SetAttribute("objectAsset", prefabObject.name);
 
+					//XmlElement boundXmlElement = xmlDocument.CreateElement("bounds")
+						
+
+					//transform
                     XmlElement transformXmlElement = xmlDocument.CreateElement("transform");
 
                     // 位置信息
