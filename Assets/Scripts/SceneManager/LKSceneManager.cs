@@ -33,7 +33,7 @@ public class LKSceneManager : Singleton<LKSceneManager>
 
 	public bool LoadScene(string name,LoadSceneComplete callback)
 	{
-		
+		return false;
 	}
 
 	public bool LoadSceneAsync(string name,LoadSceneComplete callback)
