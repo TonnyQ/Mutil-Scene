@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class UTestBootstrap : MonoBehaviour
 {
-    UTestQuadtree m_testbed = new UTestQuadtree();
+	LKScene m_testbed = new LKScene();
 
     GameObject m_player = null;
     GameObject m_moveTarget = null;
@@ -22,8 +22,8 @@ public class UTestBootstrap : MonoBehaviour
 
     void Update()
     {
-        if (_drawDebugLines)
-            UCore.DrawRect(m_testbed.Bound, 0.1f, Color.white);
+        //if (_drawDebugLines)
+            //UCore.DrawRect(m_testbed.Bound, 0.1f, Color.white);
 
         Vector3 target = m_moveTarget.transform.position;
         Vector3 dist = target - m_player.transform.position;

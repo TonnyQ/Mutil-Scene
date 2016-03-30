@@ -3,8 +3,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{A5047F13-1402-3472-709C-C8ED1368BA2E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -33,30 +34,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEngine.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\Frameworks\Managed\UnityEditor.dll</HintPath>
+      <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\SceneManager\MetaLod\UMetaLod.cs" />
-    <Compile Include="Assets\Scripts\SceneManager\MetaLod\UMetaLodDef.cs" />
-    <Compile Include="Assets\Scripts\SceneManager\QuadTree\UQuadtree.cs" />
-    <Compile Include="Assets\Scripts\SceneManager\QuadTree\UQuadtree_Internal.cs" />
-    <Compile Include="Assets\Scripts\SceneManager\SceneObjData.cs" />
-    <None Include="Assets\Config\scene_data_config.xml" />
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>..\..\..\..\..\Applications\Unity\Unity.app\Contents\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Compile Include="Assets\Scripts\StopTime.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\MetaLod\UMetaLod.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\MetaLod\UMetaLodDef.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\QuadTree\UQuadtree.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\QuadTree\UQuadtree_Internal.cs" />
+     <Compile Include="Assets\Scripts\SceneManager\SceneData.cs" />
+     <Compile Include="Assets\Scripts\TestScene\LKScene.cs" />
+     <Compile Include="Assets\Scripts\TestScene\UTestBootstrap.cs" />
+     <Compile Include="Assets\Scripts\Utlity\StopTime.cs" />
+     <None Include="Assets\Config\scene_data_config.xml" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -66,4 +69,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>
