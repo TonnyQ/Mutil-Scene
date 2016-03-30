@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using SceneManager;
 
-public class LKSceneManager : Singleton<LKSceneManager>
+public class LKSceneManager : MonoSingleton<LKSceneManager>
 {
 	public delegate bool LoadSceneComplete();
 	private LoadSceneComplete loadComplete = null;

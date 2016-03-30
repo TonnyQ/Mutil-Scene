@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using SceneManager;
 
-public class UTestQtUserData : IQtUserData
+public class UTestQtUserData : QtData
 {
     public string resPath;
 	public SceneItemData data;
@@ -54,7 +54,7 @@ public class LKScene
 
     public bool Init()
     {
-        m_quadtree = new UQuadtree(Bound);
+        m_quadtree = new QuadTree(Bound);
 
         m_instRoot = GameObject.Find("Instances");
         if (m_instRoot == null)
@@ -98,9 +98,9 @@ public class LKScene
             Random.Range(Min.y, Max.y) * magnitude);
     }
 
-    public UQuadtree Quadtree { get { return m_quadtree; } }
+    public QuadTree Quadtree { get { return m_quadtree; } }
 
     GameObject m_instRoot = null;
-    UQuadtree m_quadtree;
+    QuadTree m_quadtree;
 }
 
