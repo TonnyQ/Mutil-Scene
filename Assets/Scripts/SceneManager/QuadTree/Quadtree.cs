@@ -2,21 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public delegate void CellChanged(QtLeafNode left, QtLeafNode entered);
-public delegate void CellSwapIn(QtLeafNode leaf);
-public delegate void CellSwapOut(QtLeafNode leaf);
+public delegate void CellChanged(QuadLeafNode left, QuadLeafNode entered);
+public delegate void CellSwapIn(QuadLeafNode leaf);
+public delegate void CellSwapOut(QuadLeafNode leaf);
 
-public static class QtSetting
+public static class QuadSetting
 {
     // this value determines the smallest cell size
     // the space-partition process would stop dividing if cell size is smaller than this value
     public static float CellSizeThreshold = 64.0f;
 
     // swap-in distance of cells
-    public static float CellSwapInDist = 100.0f;
+    public static float CellSwapInDist = 50.0f;
     // swap-out distance of cells 
     //  (would be larger than swap-in to prevent poping)
-    public static float CellSwapOutDist = 150.0f;
+    public static float CellSwapOutDist = 80.0f;
 
     // time interval to update the focus point,
     // so that a new swap would potentially triggered (in seconds)
@@ -26,7 +26,7 @@ public static class QtSetting
 }
 
 // user data stored in quadtree leaves
-public interface QtData
+public interface QuadData
 {
     Vector3 GetCenter();
     Vector3 GetExtends();
@@ -38,9 +38,12 @@ public interface QtData
     bool IsSwapOutCompleted();
 }
 
-public class QtNode
+/// <summary>
+/// QuadTree Node Class
+/// </summary>
+public class QuadNode
 {
-    public QtNode(Rect bound)
+    public QuadNode(Rect bound)
     {
         _bound = bound;
     }
@@ -48,14 +51,14 @@ public class QtNode
     public Rect Bound { get { return _bound; } }
     protected Rect _bound;
 
-    public virtual void SetSubNodes(QtNode[] subNodes)
+    public virtual void SetSubNodes(QuadNode[] subNodes)
     {
         _subNodes = subNodes;
     }
 
-    public virtual void Receive(QtData userData)
+    public virtual void Receive(QuadData userData)
     {
-        if (!QtUtility.Intersects(Bound, userData))
+        if (!QuadUtility.Intersects(Bound, userData))
         {
             return;
         }
@@ -66,29 +69,34 @@ public class QtNode
         }
     }
 
-    public QtNode[] SubNodes { get { return _subNodes; } }
+    public QuadNode[] SubNodes { get { return _subNodes; } }
     public const int SubCount = 4;
-    protected QtNode[] _subNodes = null;
+    protected QuadNode[] _subNodes = null;
 }
 
-public class QtLeafNode : QtNode
+/// <summary>
+/// QuadTree Leaf Node Class
+/// </summary>
+public class QuadLeafNode : QuadNode
 {
-    public List<QtData> AffectedObjects { get { return _affectedObjects; } }
-    private List<QtData> _ownedObjects = new List<QtData>();
-    private List<QtData> _affectedObjects = new List<QtData>();
+    public List<QuadData> AffectedObjects { get { return _affectedObjects; } }
+    private List<QuadData> _ownedObjects = null;
+    private List<QuadData> _affectedObjects = null;
 
-    public QtLeafNode(Rect bound) : base(bound)
+    public QuadLeafNode(Rect bound) : base(bound)
     {
+        _ownedObjects = new List<QuadData>();
+        _affectedObjects = new List<QuadData>();
     }
 
-    public override void SetSubNodes(QtNode[] subNodes)
+    public override void SetSubNodes(QuadNode[] subNodes)
     {
-        QtDebug.Assert(false);
+        QuadDebug.Assert(false);
     }
 
-    public override void Receive(QtData userData)
+    public override void Receive(QuadData userData)
     {
-        if (!QtUtility.Intersects(Bound, userData))
+        if (!QuadUtility.Intersects(Bound, userData))
             return;
 
         if (Bound.Contains(new Vector2(userData.GetCenter().x, userData.GetCenter().z)))
@@ -101,7 +109,7 @@ public class QtLeafNode : QtNode
         }
     }
 
-    public bool Contains(QtData userData)
+    public bool Contains(QuadData userData)
     {
         if (_ownedObjects.Contains(userData))
             return true;
@@ -155,7 +163,7 @@ public class QuadTree
     /// <summary>
     /// Quad Tree root node.
     /// </summary>
-    private QtNode _root;
+    private QuadNode _root;
 
     /// <summary>
     /// current focus point.
@@ -165,19 +173,19 @@ public class QuadTree
     /// <summary>
     /// curreny focus leaf node
     /// </summary>
-    private QtLeafNode _focusLeaf;
+    private QuadLeafNode _focusLeaf;
 
-    private List<QtLeafNode> _holdingLeaves = new List<QtLeafNode>();
-    private List<QtLeafNode> _swapInQueue = new List<QtLeafNode>();
-    private List<QtLeafNode> _swapOutQueue = new List<QtLeafNode>();
+    private List<QuadLeafNode> _holdingLeaves = new List<QuadLeafNode>();
+    private List<QuadLeafNode> _swapInQueue = new List<QuadLeafNode>();
+    private List<QuadLeafNode> _swapOutQueue = new List<QuadLeafNode>();
 
     private float _lastSwapTriggeredTime = 0.0f;
     private float _lastSwapProcessedTime = 0.0f;
 
     public QuadTree(Rect bound)
     {
-        _root = new QtNode(bound);
-        QtUtility.BuildRecursively(_root);
+        _root = new QuadNode(bound);
+        QuadUtility.BuildRecursively(_root);
     }
 
     public void Update(Vector2 focusPoint)
@@ -187,21 +195,21 @@ public class QuadTree
             DrawDebugLines();
         }
 
-        if (Time.time - _lastSwapTriggeredTime > QtSetting.SwapTriggerInterval)
+        if (Time.time - _lastSwapTriggeredTime > QuadSetting.SwapTriggerInterval)
         {
             if (UpdateFocus(focusPoint))
                 PerformSwapInOut(_focusLeaf);
             _lastSwapTriggeredTime = Time.time;
         }
 
-        if (Time.time - _lastSwapProcessedTime > QtSetting.SwapProcessInterval)
+        if (Time.time - _lastSwapProcessedTime > QuadSetting.SwapProcessInterval)
         {
             ProcessSwapQueues();
             _lastSwapProcessedTime = Time.time;
         }
     }
 
-    public void Receive(QtData qud)
+    public void Receive(QuadData qud)
     {
         _root.Receive(qud);
     }
@@ -216,7 +224,7 @@ public class QuadTree
 
     private void DrawDebugLines()
     {
-        QtUtility.TraverseAllLeaves(_root, (leaf) => {
+        QuadUtility.TraverseAllLeaves(_root, (leaf) => {
             Color c = Color.gray;
 
             if (leaf == _focusLeaf)
@@ -235,7 +243,7 @@ public class QuadTree
             {
                 c = Color.white;
             }
-            QtDebug.DrawRect(leaf.Bound, 0.1f, c, 1.0f); 
+            QuadDebug.DrawRect(leaf.Bound, 0.1f, c, 0.1f); 
         });
     }
 
@@ -243,7 +251,7 @@ public class QuadTree
     {
         _focusPoint = focusPoint;
 
-        QtLeafNode newLeaf = QtUtility.FindLeafRecursively(_root, _focusPoint);
+        QuadLeafNode newLeaf = QuadUtility.FindLeafRecursively(_root, _focusPoint);
         if (newLeaf == _focusLeaf)
             return false;
 
@@ -254,33 +262,34 @@ public class QuadTree
         return true;
     }
 
-    private void PerformSwapInOut(QtLeafNode activeLeaf)
+    private void PerformSwapInOut(QuadLeafNode activeLeaf)
     {
         // 1. the initial in/out leaves generation
-        List<QtLeafNode> inLeaves;
-        List<QtLeafNode> outLeaves;
-        QtUtility.GenerateSwappingLeaves(_root, activeLeaf, _holdingLeaves, out inLeaves, out outLeaves);
+        List<QuadLeafNode> inLeaves;
+        List<QuadLeafNode> outLeaves;
+        QuadUtility.GenerateSwappingLeaves(_root, activeLeaf, _holdingLeaves, out inLeaves, out outLeaves);
 
         // 2. filter out leaves which are already in the ideal states
         inLeaves.RemoveAll((leaf) => { return _swapInQueue.Contains(leaf); });
-
+        
         // 3. append these new items to in/out queue
         SwapIn(inLeaves);
         SwapOut(outLeaves);
     }
 
-    private void SwapIn(List<QtLeafNode> inLeaves)
+    private void SwapIn(List<QuadLeafNode> inLeaves)
     {
         foreach (var leaf in inLeaves)
         {
             leaf.SwapIn();
             _swapInQueue.Add(leaf);
+          
             if (CellSwapIn != null)
                 CellSwapIn(leaf);
         }
     }
 
-    private void SwapOut(List<QtLeafNode> outLeaves)
+    private void SwapOut(List<QuadLeafNode> outLeaves)
     {
         foreach (var leaf in outLeaves)
         {
@@ -300,7 +309,7 @@ public class QuadTree
         }
     }
 
-    private bool IsHoldingUserData(QtData userData)
+    private bool IsHoldingUserData(QuadData userData)
     {
         foreach (var hLeaf in _holdingLeaves)
         {

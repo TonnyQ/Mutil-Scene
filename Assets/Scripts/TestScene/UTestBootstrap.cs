@@ -22,14 +22,14 @@ public class UTestBootstrap : MonoBehaviour
 
     void Update()
     {
-        //if (_drawDebugLines)
-            //UCore.DrawRect(m_testbed.Bound, 0.1f, Color.white);
+        if (_drawDebugLines)
+            QuadDebug.DrawRect(m_testbed.Bound, 0.1f, Color.white);
 
         Vector3 target = m_moveTarget.transform.position;
         Vector3 dist = target - m_player.transform.position;
         if (dist.magnitude > 1.0f)
         {
-            Vector3 delta = dist.normalized * Time.deltaTime * 100.0f;
+            Vector3 delta = dist.normalized * Time.deltaTime * 20.0f;
             if (delta.magnitude > dist.magnitude)
             {
                 m_player.transform.position = target;

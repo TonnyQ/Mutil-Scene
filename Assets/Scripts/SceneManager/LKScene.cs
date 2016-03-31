@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using SceneManager;
 using System.Xml;
 
-public class UTestQtUserData : QtData
+public class UTestQtUserData : QuadData
 {
 	private GameObject parent;
 	private GameObject testObj;
@@ -47,6 +47,9 @@ public class UTestQtUserData : QtData
 	private void Load()
 	{
 		testObj = GameObject.Instantiate(Resources.Load (data.Path)) as GameObject;
+        testObj.transform.localPosition = data.Position;
+        testObj.transform.localRotation = data.Rotation;
+        testObj.transform.localScale = data.Scale;
 		testObj.transform.parent = parent.transform;
 	}
 
@@ -64,7 +67,7 @@ public class UTestQtUserData : QtData
 /// </summary>
 public class LKScene
 {
-	private Scene curScene;
+	//private Scene curScene;
     public Vector2 Min = new Vector2(-256, -256);
     public Vector2 Max = new Vector2(256, 256);
     public Rect Bound { get { return new Rect(Min.x, Min.y, Max.x - Min.x, Max.y - Min.y); } }

@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public delegate QtNode UQtCreateNode(Rect bnd);
-public delegate void QTreeForeachLeafNode(QtLeafNode leaf);
+public delegate QuadNode QuadCreateNode(Rect bnd);
+public delegate void QuadForeachLeafNode(QuadLeafNode leaf);
 
 
-public class QtDebug
+public class QuadDebug
 {
     public static void Assert(bool expr)
     {
@@ -23,9 +23,9 @@ public class QtDebug
 }
 
 
-public static class QtUtility
+public static class QuadUtility
 {
-    public static bool Intersects(Rect nodeBound, QtData userData)
+    public static bool Intersects(Rect nodeBound, QuadData userData)
     {
         Rect r = new Rect(
             userData.GetCenter().x - userData.GetExtends().x,
@@ -43,18 +43,18 @@ public static class QtUtility
         return !outside;
     }
 
-    public static void BuildRecursively(QtNode node)
+    public static void BuildRecursively(QuadNode node)
     {
         // parameters
         float subWidth = node.Bound.width * 0.5f;
         float subHeight = node.Bound.height * 0.5f;
-        bool isPartible = subWidth >= QtSetting.CellSizeThreshold && subHeight >= QtSetting.CellSizeThreshold;
+        bool isPartible = subWidth >= QuadSetting.CellSizeThreshold && subHeight >= QuadSetting.CellSizeThreshold;
 
         // create subnodes
-        UQtCreateNode _nodeCreator = (bnd) => { return new QtNode(bnd); };
-        UQtCreateNode _leafCreator = (bnd) => { return new QtLeafNode(bnd); };
-        UQtCreateNode creator = isPartible ? _nodeCreator : _leafCreator;
-        node.SetSubNodes(new QtNode[QtNode.SubCount] {
+        QuadCreateNode _nodeCreator = (bnd) => { return new QuadNode(bnd); };
+        QuadCreateNode _leafCreator = (bnd) => { return new QuadLeafNode(bnd); };
+        QuadCreateNode creator = isPartible ? _nodeCreator : _leafCreator;
+        node.SetSubNodes(new QuadNode[QuadNode.SubCount] {
             creator(new Rect(node.Bound.xMin,             node.Bound.yMin,                subWidth, subHeight)),
             creator(new Rect(node.Bound.xMin + subWidth,  node.Bound.yMin,                subWidth, subHeight)),
             creator(new Rect(node.Bound.xMin,             node.Bound.yMin + subHeight,    subWidth, subHeight)),
@@ -71,61 +71,61 @@ public static class QtUtility
         }
     }
 
-    public static void TraverseAllLeaves(QtNode node, QTreeForeachLeafNode func)
+    public static void TraverseAllLeaves(QuadNode node, QuadForeachLeafNode func)
     {
-        if (node is QtLeafNode)
-            func(node as QtLeafNode);
+        if (node is QuadLeafNode)
+            func(node as QuadLeafNode);
         else
             foreach (var sub in node.SubNodes)
                 TraverseAllLeaves(sub, func);
     }
 
-    public static QtLeafNode FindLeafRecursively(QtNode node, Vector2 point)
+    public static QuadLeafNode FindLeafRecursively(QuadNode node, Vector2 point)
     {
         if (!node.Bound.Contains(point))
             return null;
 
-        if (node is QtLeafNode)
-            return node as QtLeafNode;
+        if (node is QuadLeafNode)
+            return node as QuadLeafNode;
 
         foreach (var sub in node.SubNodes)
         {
-            QtLeafNode leaf = FindLeafRecursively(sub, point);
+            QuadLeafNode leaf = FindLeafRecursively(sub, point);
             if (leaf != null)
                 return leaf;
         }
 
-        QtDebug.Assert(false);  // should never reaches here 
+        QuadDebug.Assert(false);  // should never reaches here 
         return null;
     }
 
-    public static void GenerateSwappingLeaves(QtNode node, QtLeafNode active, List<QtLeafNode> holdingLeaves, out List<QtLeafNode> inLeaves, out List<QtLeafNode> outLeaves)
+    public static void GenerateSwappingLeaves(QuadNode node, QuadLeafNode active, List<QuadLeafNode> holdingLeaves, out List<QuadLeafNode> inLeaves, out List<QuadLeafNode> outLeaves)
     {
-        List<QtLeafNode> inList = new List<QtLeafNode>();
-        GenerateLeavesByDist(node, active, QtSetting.CellSwapInDist, ref inList);
+        List<QuadLeafNode> inList = new List<QuadLeafNode>();
+        GenerateLeavesByDist(node, active, QuadSetting.CellSwapInDist, ref inList);
         inList.RemoveAll((item) => holdingLeaves.Contains(item));
         inLeaves = inList;
 
-        List<QtLeafNode> outList = new List<QtLeafNode>();
-        GenerateLeavesByDist(node, active, QtSetting.CellSwapOutDist, ref outList);
-        List<QtLeafNode> outFilteredList = new List<QtLeafNode>();
+        List<QuadLeafNode> outList = new List<QuadLeafNode>();
+        GenerateLeavesByDist(node, active, QuadSetting.CellSwapOutDist, ref outList);
+        List<QuadLeafNode> outFilteredList = new List<QuadLeafNode>();
         foreach (var leaf in holdingLeaves)
         {
             if (!outList.Contains(leaf))
             {
                 outFilteredList.Add(leaf);
             }
-        }
+        }       
         outLeaves = outFilteredList;
     }
 
-    private static void GenerateLeavesByDist(QtNode node, QtLeafNode active, float dist, ref List<QtLeafNode> leaves)
+    private static void GenerateLeavesByDist(QuadNode node, QuadLeafNode active, float dist, ref List<QuadLeafNode> leaves)
     {
         if (!Intersects(node.Bound, active.Bound.center, dist))
             return;
 
-        if (node is QtLeafNode)
-            leaves.Add(node as QtLeafNode);
+        if (node is QuadLeafNode)
+            leaves.Add(node as QuadLeafNode);
         else
             foreach (var sub in node.SubNodes)
                 GenerateLeavesByDist(sub, active, dist, ref leaves);
