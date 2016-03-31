@@ -7,8 +7,8 @@ public class UTestBootstrap : MonoBehaviour
 {
 	LKScene m_testbed = new LKScene();
 
-    GameObject m_player = null;
-    GameObject m_moveTarget = null;
+    public GameObject m_player = null;
+    public GameObject m_moveTarget = null;
 
     bool _alwaysMove = false;
     bool _drawDebugLines = false;
@@ -16,8 +16,8 @@ public class UTestBootstrap : MonoBehaviour
     void Start()
     {
         m_testbed.Init();
-        m_player = GameObject.Find("Player");
-        m_moveTarget = GameObject.Find("MoveTarget");
+       // m_player = GameObject.Find("Player");
+       // m_moveTarget = GameObject.Find("MoveTarget");
     }
 
     void Update()

@@ -10,7 +10,7 @@ public static class QtSetting
 {
     // this value determines the smallest cell size
     // the space-partition process would stop dividing if cell size is smaller than this value
-    public static float CellSizeThreshold = 32.0f;
+    public static float CellSizeThreshold = 64.0f;
 
     // swap-in distance of cells
     public static float CellSwapInDist = 100.0f;

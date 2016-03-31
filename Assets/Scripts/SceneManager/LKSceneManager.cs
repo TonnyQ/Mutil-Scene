@@ -31,7 +31,17 @@ public class LKSceneManager : MonoSingleton<LKSceneManager>
 		return false;
 	}
 
-	public bool LoadScene(string name,LoadSceneComplete callback)
+	public bool LoadScene(string name,bool isSync,LoadSceneComplete callback)
+	{
+		if (isSync) {
+			LoadSceneSync (name, callback);
+		} else {
+			LoadSceneAsync (name, callback);
+		}
+		return true;
+	}
+
+	public bool LoadSceneSync(string name,LoadSceneComplete callback)
 	{
 		return false;
 	}

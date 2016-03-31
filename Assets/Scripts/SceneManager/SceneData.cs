@@ -91,6 +91,17 @@ namespace SceneManager
 			}
 		}
 
+		private Vector3 bound;
+
+		public Vector3 Bound {
+			get {
+				return bound;
+			}
+			set {
+				bound = value;
+			}
+		}
+
 		private Vector3 position;
 
 		public Vector3 Position {

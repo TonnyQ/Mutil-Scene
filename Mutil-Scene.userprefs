@@ -1,13 +1,12 @@
-﻿<Properties StartupItem="Mutil-Scene.CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
+﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/ExportSceneData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SceneManager/LKSceneManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/SceneManager/MetaLod/UMetaLod.cs" Line="192" Column="30" />
-      <File FileName="Assets/Scripts/SceneManager/MetaLod/UMetaLodDef.cs" Line="47" Column="15" />
-      <File FileName="Assets/Scripts/SceneManager/QuadTree/UQuadtree.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SceneManager/QuadTree/UQuadtree_Internal.cs" Line="1" Column="1" />
-      <File FileName="Assets/Editor/ExportSceneData.cs" Line="1" Column="27" />
-      <File FileName="Assets/Config/scene_data_config.xml" Line="1" Column="1" />
+      <File FileName="Assets/Editor/ExportSceneData.cs" Line="52" Column="8" />
+      <File FileName="Assets/Scripts/TestScene/UTestBootstrap.cs" Line="25" Column="11" />
+      <File FileName="Assets/Scripts/SceneManager/SceneData.cs" Line="28" Column="5" />
+      <File FileName="Assets/Scripts/SceneManager/LKSceneManager.cs" Line="36" Column="16" />
+      <File FileName="Assets/Scripts/Singleton.cs" Line="1" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -49,8 +49,15 @@ public class ExportSceneData : Editor {
                     gameObjectXmlElement.SetAttribute("objectName", sceneObject.name);
                     gameObjectXmlElement.SetAttribute("objectAsset", prefabObject.name);
 
-					//XmlElement boundXmlElement = xmlDocument.CreateElement("bounds")
-						
+					Renderer render = sceneObject.GetComponent<Renderer> ();
+					if (render != null) 
+					{
+						XmlElement boundXmlElement = xmlDocument.CreateElement ("bound");
+						boundXmlElement.SetAttribute ("x", render.bounds.extents.x.ToString ());
+						boundXmlElement.SetAttribute ("y", render.bounds.extents.y.ToString ());
+						boundXmlElement.SetAttribute ("z", render.bounds.extents.z.ToString ());
+						gameObjectXmlElement.AppendChild (boundXmlElement);
+					}
 
 					//transform
                     XmlElement transformXmlElement = xmlDocument.CreateElement("transform");
