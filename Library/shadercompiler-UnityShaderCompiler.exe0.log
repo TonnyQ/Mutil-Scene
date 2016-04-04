@@ -1,64 +1,26 @@
 Base path: D:/Unity/Editor/Data
 Cmd: getPlatforms
-Cmd: preprocess
-  insize=219 outsize=219 ok=1
-Cmd: preprocess
-  insize=2446 outsize=908 ok=1
-Cmd: preprocess
-  insize=1661 outsize=525 ok=1
-Cmd: preprocess
-  insize=3029 outsize=950 ok=1
-Cmd: preprocess
-  insize=2440 outsize=509 ok=1
-Cmd: preprocess
-  insize=2105 outsize=947 ok=1
-Cmd: preprocess
-  insize=2067 outsize=510 ok=1
-Cmd: preprocess
-  insize=480 outsize=480 ok=1
-Cmd: preprocess
-  insize=2561 outsize=569 ok=1
-Cmd: preprocess
-  insize=2186 outsize=566 ok=1
-Cmd: preprocess
-  insize=1485 outsize=643 ok=1
-Cmd: preprocess
-  insize=1559 outsize=893 ok=1
-Cmd: preprocess
-  insize=1588 outsize=662 ok=1
-Cmd: preprocess
-  insize=2821 outsize=909 ok=1
-Cmd: preprocess
-  insize=1743 outsize=939 ok=1
-Cmd: preprocess
-  insize=1647 outsize=567 ok=1
-Cmd: preprocess
-  insize=1515 outsize=511 ok=1
-Cmd: preprocess
-  insize=3042 outsize=2109 ok=1
-Cmd: preprocess
-  insize=2654 outsize=948 ok=1
-Cmd: preprocess
-  insize=1897 outsize=909 ok=1
-Cmd: preprocess
-  insize=2588 outsize=527 ok=1
-Cmd: preprocess
-  insize=435 outsize=435 ok=1
-Cmd: preprocess
-  insize=1552 outsize=540 ok=1
-Cmd: preprocess
-  insize=1514 outsize=900 ok=1
-Cmd: preprocess
-  insize=5950 outsize=3828 ok=1
-Cmd: preprocess
-  insize=1570 outsize=947 ok=1
-Cmd: preprocess
-  insize=2361 outsize=2709 ok=1
-Cmd: preprocess
-  insize=1367 outsize=523 ok=1
-Cmd: preprocess
-  insize=1315 outsize=516 ok=1
-Cmd: preprocess
-  insize=2213 outsize=525 ok=1
-Cmd: preprocess
-  insize=1668 outsize=929 ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=751 outsize=1733 kw=SHADOWS_DEPTH pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=751 outsize=181 kw=SHADOWS_DEPTH pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=965 outsize=1953 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=965 outsize=5533 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=923 outsize=2013 kw=DIRECTIONAL SHADOWS_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=923 outsize=2881 kw=DIRECTIONAL SHADOWS_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=965 outsize=2309 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _NORMALMAP pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=965 outsize=5921 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _NORMALMAP pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=923 outsize=2013 kw=DIRECTIONAL SHADOWS_OFF _NORMALMAP pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=923 outsize=3217 kw=DIRECTIONAL SHADOWS_OFF _NORMALMAP pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=965 outsize=2485 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _NORMALMAP pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=965 outsize=6073 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _NORMALMAP pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1

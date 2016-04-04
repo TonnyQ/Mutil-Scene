@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;           
 using System.Collections.Generic;
 
 public delegate void CellChanged(QuadLeafNode left, QuadLeafNode entered);
@@ -79,9 +78,16 @@ public class QuadNode
 /// </summary>
 public class QuadLeafNode : QuadNode
 {
-    public List<QuadData> AffectedObjects { get { return _affectedObjects; } }
-    private List<QuadData> _ownedObjects = null;
     private List<QuadData> _affectedObjects = null;
+    public List<QuadData> AffectedObjects
+    {
+        get {
+            return _affectedObjects;
+        }
+    }
+
+    private List<QuadData> _ownedObjects = null;
+    
 
     public QuadLeafNode(Rect bound) : base(bound)
     {

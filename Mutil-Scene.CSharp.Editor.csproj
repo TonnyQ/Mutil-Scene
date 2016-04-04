@@ -102,6 +102,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Mutil-Scene.CSharp.Plugins.csproj">
+      <Project>{49AC749A-AE2A-0376-350E-3B9499060637}</Project>
+      <Name>Mutil-Scene.CSharp.Plugins</Name>
+    </ProjectReference>
     <ProjectReference Include="Mutil-Scene.CSharp.csproj">
       <Project>{E0AC125F-F727-6C52-D6FC-4C4B76C294D6}</Project>
       <Name>Mutil-Scene.CSharp</Name>
@@ -238,6 +242,10 @@
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
+    <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
+    <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
+    <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
+    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
